@@ -1,39 +1,39 @@
 <template>
   <el-row :gutter="40" class="panel-group">
-    <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
+    <el-col :xs="24" :sm="24" :lg="8" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('fans')">
         <div class="card-panel-icon-wrapper icon-people">
           <svg-icon icon-class="peoples" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Fans
+            粉丝
           </div>
           <count-to :start-val="0" :end-val="102400" :duration="1800" class="card-panel-num" />
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
+    <el-col :xs="24" :sm="24" :lg="8" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('liked')">
         <div class="card-panel-icon-wrapper icon-liked">
           <svg-icon icon-class="liked" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Liked
+            点赞
           </div>
           <count-to :start-val="0" :end-val="81212" :duration="2000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
+    <el-col :xs="24" :sm="24" :lg="8" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('collection')">
         <div class="card-panel-icon-wrapper icon-collection">
           <svg-icon icon-class="collection" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Collection
+            收藏
           </div>
           <count-to :start-val="0" :end-val="9280" :duration="2200" class="card-panel-num" />
         </div>
@@ -48,6 +48,12 @@ import CountTo from 'vue-count-to'
 export default {
   components: {
     CountTo
+  },
+  computed: {
+    device() {
+      return this.$store.state.app.device
+    },
+
   },
   methods: {
     handleSetLineChartData(type) {
@@ -122,8 +128,9 @@ export default {
     .card-panel-description {
       float: right;
       font-weight: bold;
-      margin: 36px;
-      margin-left: 0px;
+      margin-top: 36px;
+      margin-bottom: 36px;
+      margin-right: 36px;
 
       .card-panel-text {
         line-height: 40px;
@@ -135,25 +142,6 @@ export default {
       .card-panel-num {
         font-size: 40px;
       }
-    }
-  }
-}
-
-@media (max-width:550px) {
-  .card-panel-description {
-    display: none;
-  }
-
-  .card-panel-icon-wrapper {
-    float: none !important;
-    width: 100%;
-    height: 100%;
-    margin: 0 !important;
-
-    .svg-icon {
-      display: block;
-      margin: 14px auto !important;
-      float: none !important;
     }
   }
 }

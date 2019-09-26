@@ -93,7 +93,8 @@ export default {
           }
         },
         legend: {
-          data: ['actual']
+          data: ['actual'],
+          show: false
         },
         series: [
           {
