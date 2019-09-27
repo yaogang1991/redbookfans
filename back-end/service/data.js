@@ -8,8 +8,13 @@ module.exports = {
     unit = unit || 'hour';
     let sql = '';
     switch (unit) {
+      case 'lastest':
+        sql =
+          'select fans, collected, liked from record order by id desc limit 1';
+        break;
       case 'hour':
-        sql = 'select fans, collected, liked from record order by timestamp desc limit 60';
+        sql =
+          'select fans, collected, liked, timestamp from (select * from record order by id desc limit 60) t order by id';
         break;
     }
     let result = {};
