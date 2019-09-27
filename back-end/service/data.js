@@ -14,7 +14,7 @@ module.exports = {
         break;
       case 'hour':
         sql =
-          "select fans, collected, liked, DATE_FORMAT(timestamp,'%m-%d %H:%i') from (select * from record order by id desc limit 60) t order by id";
+          "select fans, collected, liked, DATE_FORMAT(timestamp,'%m-%d %H:%i') as timestamp from (select * from record order by id desc limit 60) t order by id";
         break;
     }
     let result = {};
