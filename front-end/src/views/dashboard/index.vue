@@ -32,17 +32,14 @@ export default {
     getData('lastest').then(res => {
       this.panelData = res[0]
     }),
-    getData('hour').then(res => {
-      this.axisData = res.map(m => {
-        console.log(typeof m.timestamp)
-        return m.timestamp
-      })
+    getData('day').then(res => {
+      this.axisData = res.map(m => m.timestamp)
       this.chartData = res.map(m => m.fans)
     })
   },
   methods: {
     handleSetLineChartData(type) {
-      getData('hour').then(res => {
+      getData('day').then(res => {
         let lineChartData = {}
         switch (type) {
           case 'fans':
