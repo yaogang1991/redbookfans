@@ -66,7 +66,6 @@ export default {
       this.setOptions(this.chartData)
     },
     setOptions(val) {
-      console.log(val)
       this.chart.setOption({
         xAxis: {
           // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -75,9 +74,9 @@ export default {
           axisTick: {
             show: false
           },
-          // axisLabel: {
-          //   interval: 2
-          // } 
+          axisLabel: {
+            interval: this.axisData.length / 6
+          } 
         },
         grid: {
           left: 10,
@@ -86,14 +85,15 @@ export default {
           top: 30,
           containLabel: true
         },
-        // tooltip: {
-        //   trigger: 'axis',
-        //   axisPointer: {
-        //     type: 'cross'
-        //   },
-        //   padding: [5, 10]
-        // },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          },
+          padding: [5, 10]
+        },
         yAxis: {
+          scale:true,
           axisTick: {
             show: false
           }

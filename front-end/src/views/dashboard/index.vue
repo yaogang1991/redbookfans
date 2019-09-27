@@ -33,7 +33,10 @@ export default {
       this.panelData = res[0]
     }),
     getData('hour').then(res => {
-      this.axisData = res.map(m => m.timestamp)
+      this.axisData = res.map(m => {
+        console.log(typeof m.timestamp)
+        return m.timestamp
+      })
       this.chartData = res.map(m => m.fans)
     })
   },
@@ -44,13 +47,13 @@ export default {
         switch (type) {
           case 'fans':
             lineChartData = res.map(m => m.fans)
-            break;
+            break
           case 'liked':
             lineChartData = res.map(m => m.liked)
-            break;
+            break
           case 'collected':
             lineChartData = res.map(m => m.collected)
-            break;
+            break
         }
         this.chartData = lineChartData
       })
