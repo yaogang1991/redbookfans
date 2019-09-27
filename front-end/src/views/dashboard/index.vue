@@ -1,8 +1,11 @@
 <template>
   <div class="dashboard-container">
-    <panel-group @handleSetLineChartData="handleSetLineChartData" />
+    <panel-group
+      :panel-data="panelData"
+      @handleSetLineChartData="handleSetLineChartData"
+    />
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-      <line-chart :chart-data="lineChartData" />
+      <line-chart :chart-data="chartData" :axis-data="axisData" />
     </el-row>
   </div>
 </template>
@@ -10,21 +13,7 @@
 <script>
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
-
-const lineChartData = {
-  fans: {
-    expectedData: [100, 120, 161, 134, 105, 160, 165],
-    actualData: [120, 82, 91, 154, 162, 140, 145]
-  },
-  liked: {
-    expectedData: [200, 192, 120, 144, 160, 130, 140],
-    actualData: [180, 160, 151, 106, 145, 150, 130]
-  },
-  collection: {
-    expectedData: [80, 100, 121, 104, 105, 90, 100],
-    actualData: [120, 90, 100, 138, 142, 130, 130]
-  }
-}
+import { getData } from '@/api/data'
 
 export default {
   name: 'Dashboard',
@@ -34,12 +23,37 @@ export default {
   },
   data() {
     return {
-      lineChartData: lineChartData.fans
+      panelData: {},
+      axisData: [],
+      chartData: []
     }
+  },
+  mounted() {
+    getData('lastest').then(res => {
+      this.panelData = res[0]
+    }),
+    getData('hour').then(res => {
+      this.axisData = res.map(m => m.timestamp)
+      this.chartData = res.map(m => m.fans)
+    })
   },
   methods: {
     handleSetLineChartData(type) {
-      this.lineChartData = lineChartData[type]
+      getData('hour').then(res => {
+        let lineChartData = {}
+        switch (type) {
+          case 'fans':
+            lineChartData = res.map(m => m.fans)
+            break;
+          case 'liked':
+            lineChartData = res.map(m => m.liked)
+            break;
+          case 'collected':
+            lineChartData = res.map(m => m.collected)
+            break;
+        }
+        this.chartData = lineChartData
+      })
     }
   }
 }

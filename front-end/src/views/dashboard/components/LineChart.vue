@@ -26,8 +26,12 @@ export default {
       type: Boolean,
       default: true
     },
+    axisData: {
+      type: Array,
+      required: true
+    },
     chartData: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
@@ -61,13 +65,15 @@ export default {
       this.chart = echarts.init(this.$el, 'macarons')
       this.setOptions(this.chartData)
     },
-    setOptions({ expectedData, actualData } = {}) {
+    setOptions(val) {
+      console.log(val)
       this.chart.setOption({
         xAxis: {
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: this.axisData,
           boundaryGap: false,
           axisTick: {
-            show: true
+            show: false
           },
           // axisLabel: {
           //   interval: 2
@@ -80,13 +86,13 @@ export default {
           top: 30,
           containLabel: true
         },
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'cross'
-          },
-          padding: [5, 10]
-        },
+        // tooltip: {
+        //   trigger: 'axis',
+        //   axisPointer: {
+        //     type: 'cross'
+        //   },
+        //   padding: [5, 10]
+        // },
         yAxis: {
           axisTick: {
             show: false
@@ -113,7 +119,7 @@ export default {
                 }
               }
             },
-            data: actualData,
+            data: val,
             animationDuration: 2000,
             animationEasing: 'quadraticOut'
           }

@@ -9,7 +9,7 @@
           <div class="card-panel-text">
             粉丝
           </div>
-          <count-to :start-val="0" :end-val="102400" :duration="1800" class="card-panel-num" />
+          <count-to :start-val="0" :end-val=panelData.fans :duration="1800" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -22,12 +22,12 @@
           <div class="card-panel-text">
             点赞
           </div>
-          <count-to :start-val="0" :end-val="81212" :duration="2000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val=panelData.liked :duration="2000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
     <el-col :xs="24" :sm="24" :lg="8" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('collection')">
+      <div class="card-panel" @click="handleSetLineChartData('collected')">
         <div class="card-panel-icon-wrapper icon-collection">
           <svg-icon icon-class="collection" class-name="card-panel-icon" />
         </div>
@@ -35,7 +35,7 @@
           <div class="card-panel-text">
             收藏
           </div>
-          <count-to :start-val="0" :end-val="9280" :duration="2200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val=panelData.collected :duration="2200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -46,6 +46,12 @@
 import CountTo from 'vue-count-to'
 
 export default {
+  props: {
+    panelData: {
+      type: Object,
+      required: true
+    }
+  },
   components: {
     CountTo
   },
