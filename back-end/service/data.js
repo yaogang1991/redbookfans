@@ -20,6 +20,8 @@ module.exports = {
         sql =
           "select fans, collected, liked, DATE_FORMAT(timestamp,'%m-%d %H:%i') as timestamp from (select * from record order by id desc limit 1440) t order by id";
         break;
+      case 'day_begin':
+        sql = "select fans, collected, liked from record where timestamp = curdate()";
     }
     let result = {};
     const connection = await mysql.createConnection({
