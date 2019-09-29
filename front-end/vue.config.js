@@ -1,6 +1,8 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const productionGzipExtensions = ['js', 'css']
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -51,7 +53,22 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
+    externals: {
+      'vue': 'Vue',
+      'vue-router': 'VueRouter',
+      'vuex': 'Vuex',
+      'axios': 'axios',
+      'echarts': 'echarts',
+      'element-ui': 'ElementUI',
+      'js-cookie': 'Cookies'
+    },
+    plugins: [new CompressionWebpackPlugin({
+      algorithm: 'gzip',
+      test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+      threshold: 10240,
+      minRatio: 0.8
+    })]
   },
   chainWebpack(config) {
     config.plugins.delete('preload') // TODO: need test

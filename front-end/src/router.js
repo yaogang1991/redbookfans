@@ -1,11 +1,11 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+// import Vue from 'vue'
+// import VueRouter from 'vue-router'
 
-Vue.use(Router)
+// Vue.use(VueRouter)
 
 import Layout from '@/layout'
 
-export default new Router({
+export default new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {

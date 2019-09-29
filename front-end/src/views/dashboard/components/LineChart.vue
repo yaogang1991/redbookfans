@@ -75,7 +75,7 @@ export default {
             show: false
           },
           axisLabel: {
-            interval: this.axisData.length / 6
+            interval: (this.axisData.length / 6) - 10
           } 
         },
         grid: {

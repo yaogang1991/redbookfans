@@ -1,10 +1,10 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 
 import 'normalize.css/normalize.css'
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import locale from 'element-ui/lib/locale/lang/en'
+// import ElementUI from 'element-ui'
+// import 'element-ui/lib/theme-chalk/index.css'
+// import locale from 'element-ui/lib/locale/lang/en'
 
 import '@/styles/index.scss'
 
@@ -14,7 +14,7 @@ import store from './store'
 
 import '@/icons'
 
-Vue.use(ElementUI, { locale })
+// Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 
