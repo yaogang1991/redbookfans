@@ -6,10 +6,16 @@
           <svg-icon icon-class="peoples" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
+          <count-to
+            :start-val="0"
+            :end-val="panelData.fans"
+            :duration="1800"
+            class="card-panel-num"
+          />
           <div class="card-panel-text">
-            粉丝
+            <svg-icon icon-class="increase" />
+            {{panelData.fans - panelInitData.fans}}
           </div>
-          <count-to :start-val="0" :end-val=panelData.fans :duration="1800" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -19,10 +25,16 @@
           <svg-icon icon-class="liked" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
+          <count-to
+            :start-val="0"
+            :end-val="panelData.liked"
+            :duration="2000"
+            class="card-panel-num"
+          />
           <div class="card-panel-text">
-            点赞
+            <svg-icon icon-class="increase" />
+            {{panelData.liked - panelInitData.liked}}
           </div>
-          <count-to :start-val="0" :end-val=panelData.liked :duration="2000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -32,10 +44,16 @@
           <svg-icon icon-class="collection" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
+          <count-to
+            :start-val="0"
+            :end-val="panelData.collected"
+            :duration="2200"
+            class="card-panel-num"
+          />
           <div class="card-panel-text">
-            收藏
+            <svg-icon icon-class="increase" />
+            {{panelData.collected - panelInitData.collected}}
           </div>
-          <count-to :start-val="0" :end-val=panelData.collected :duration="2200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -46,20 +64,23 @@
 import CountTo from 'vue-count-to'
 
 export default {
+  components: {
+    CountTo
+  },
   props: {
     panelData: {
       type: Object,
       required: true
+    },
+    panelInitData: {
+      type: Object,
+      required: true
     }
-  },
-  components: {
-    CountTo
   },
   computed: {
     device() {
       return this.$store.state.app.device
-    },
-
+    }
   },
   methods: {
     handleSetLineChartData(type) {
@@ -86,7 +107,7 @@ export default {
     color: #666;
     background: #fff;
     box-shadow: 8px 8px 40px rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, .05);
+    border-color: rgba(0, 0, 0, 0.05);
 
     &:hover {
       .card-panel-icon-wrapper {
@@ -111,7 +132,7 @@ export default {
     }
 
     .icon-liked {
-      color: #F56C6C;
+      color: #f56c6c;
     }
 
     .icon-collection {
@@ -140,9 +161,9 @@ export default {
 
       .card-panel-text {
         line-height: 40px;
-        color: rgba(0, 0, 0, 0.45);
+        color: rgba(255, 0, 0, 0.95);
         font-size: 32px;
-        margin-bottom: 24px;
+        margin-top: 24px;
       }
 
       .card-panel-num {

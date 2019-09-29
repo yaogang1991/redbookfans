@@ -2,6 +2,7 @@
   <div class="dashboard-container">
     <panel-group
       :panel-data="panelData"
+      :panel-init-data="panelInitData"
       @handleSetLineChartData="handleSetLineChartData"
     />
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
@@ -24,6 +25,7 @@ export default {
   data() {
     return {
       panelData: {},
+      panelInitData: {},
       axisData: [],
       chartData: []
     }
@@ -35,6 +37,9 @@ export default {
     getData('day').then(res => {
       this.axisData = res.map(m => m.timestamp)
       this.chartData = res.map(m => m.fans)
+    }),
+    getData('day_beginfront-end/src/views/dashboard/index.vue').then(res => {
+      this.panelInitData = res[0]
     })
   },
   methods: {
