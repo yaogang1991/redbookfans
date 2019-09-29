@@ -38,7 +38,7 @@ export default {
       this.axisData = res.map(m => m.timestamp)
       this.chartData = res.map(m => m.fans)
     }),
-    getData('day_beginfront-end/src/views/dashboard/index.vue').then(res => {
+    getData('day_begin').then(res => {
       this.panelInitData = res[0]
     })
   },
